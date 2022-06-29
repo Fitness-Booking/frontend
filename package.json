@@ -23,6 +23,7 @@
     "@auth0/angular-jwt": "^5.0.2",
     "@ng-bootstrap/ng-bootstrap": "^9.1.0",
     "bootstrap": "^4.5.0",
+    "firebase": "^9.8.4",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.0.17",
     "tslib": "^2.0.0",
