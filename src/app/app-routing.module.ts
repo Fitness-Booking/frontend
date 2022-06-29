@@ -15,7 +15,7 @@ import { AddEditCoachComponent } from './components/coaches-page/add-edit-coach/
 import { SubscribeComponent } from './components/sectionSchedules-page/subscribe-page/subscribe.component';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
+  { path: '', component: SignInComponent },
   { path: 'coaches', component: CoachesPageComponent },
   { path: 'visitor-home-page', component:VisitorHomePageComponent },
   { path: 'sections', component: SectionsPageComponent},
