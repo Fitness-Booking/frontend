@@ -17,4 +17,5 @@ jobs:
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_FITNESS_BOOKING_3FF78 }}'
+          channelId: live
           projectId: fitness-booking-3ff78
