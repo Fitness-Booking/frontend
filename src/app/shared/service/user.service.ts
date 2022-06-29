@@ -25,7 +25,7 @@ export class AuthService {
         return;
       }
       localStorage.setItem('access_token', result.access_token);
-      this.router.navigate(['/']);
+      this.router.navigate(['/home']);
     });
   }
 
@@ -48,7 +48,7 @@ export class AuthService {
         return;
       }
       localStorage.setItem('access_token', result.access_token);
-      this.router.navigate(['/']);
+      this.router.navigate(['/home']);
     });
   }
   public get(id?: number, roleId?: number, name?: string, email?:string ){

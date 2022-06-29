@@ -79,7 +79,7 @@ export class AddEditGymComponent implements OnInit {
   }
   private exit(){
     sessionStorage.removeItem('gymId');
-    
-    this.router.navigate(['/']);
+
+    this.router.navigate(['/home']);
   }
 }

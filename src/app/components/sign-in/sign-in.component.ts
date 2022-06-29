@@ -20,7 +20,7 @@ export class SignInComponent implements OnInit {
     private authService: AuthService
   ) {
     if (localStorage.getItem('access_token')) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/home']);
     }
   }
   ngOnInit(): void {
