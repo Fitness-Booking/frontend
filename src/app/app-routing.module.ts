@@ -15,6 +15,7 @@ import { AddEditCoachComponent } from './components/coaches-page/add-edit-coach/
 import { SubscribeComponent } from './components/sectionSchedules-page/subscribe-page/subscribe.component';
 
 const routes: Routes = [
+  { path: '', component: SignInComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'coaches', component: CoachesPageComponent },
   { path: 'visitor-home-page', component:VisitorHomePageComponent },
@@ -25,7 +26,6 @@ const routes: Routes = [
   { path: 'add-edit-gym-page', component:AddEditGymComponent},
   { path: 'add-edit-coach-page', component: AddEditCoachComponent },
   { path: 'subscribe-page', component: SubscribeComponent },
-  { path: '', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: '**', redirectTo: '' }
 ];
