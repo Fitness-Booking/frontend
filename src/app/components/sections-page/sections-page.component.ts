@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class SectionsPageComponent implements OnInit {
   public sections$: Section[];
-  private gymId:number;
+  private gymId: number;
   constructor(
     private router: Router,
     private sectionService: SectionService,
@@ -20,30 +20,30 @@ export class SectionsPageComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    this.gymId = +sessionStorage.getItem('gymId')
-    this.sectionService.get(null, null, this.gymId, null).subscribe(values=>{
+    this.gymId = +sessionStorage.getItem('gymId');
+    this.sectionService.get(null, null, this.gymId, null).subscribe(values => {
       this.sections$ = values;
-    })
+    });
   }
-  deleteSection(sectionId:number){
-    this.logger.log("Section deleted")
+  deleteSection(sectionId: number){
+    this.logger.log('Section deleted');
   }
   addSection(){
     sessionStorage.setItem('gymId', this.gymId.toString());
     this.router.navigate([`add-edit-section-page`]);
   }
-  editSection( sectionId: number,typeId: number, name: string){
-    this.router.navigate([`add-edit-section-page`], {state:{
-      sectionId: sectionId,
-      typeId: typeId,
-      name: name
+  editSection( sectionId: number, typeId: number, name: string){
+    this.router.navigate([`add-edit-section-page`], {state: {
+      sectionId,
+      typeId,
+      name
     }});
   }
-  viewSchedules(sectionId:number){
+  viewSchedules(sectionId: number){
     sessionStorage.setItem('sectionId', sectionId.toString());
     this.router.navigate([`section-schedules-page`]);
   }
   addCoach(){
-    this.router.navigate(['add-edit-coach-page'])
+    this.router.navigate(['add-edit-coach-page']);
   }
 }

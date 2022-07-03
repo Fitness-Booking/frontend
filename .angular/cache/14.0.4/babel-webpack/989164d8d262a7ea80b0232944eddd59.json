@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class UserRequest {\n  constructor(id, roleId, name, email) {\n    this.id = id;\n    this.roleId = roleId;\n    this.name = name;\n    this.email = email;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

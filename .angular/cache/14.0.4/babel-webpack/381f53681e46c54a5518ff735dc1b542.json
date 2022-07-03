@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class UpdateSectionSchredule {\n  constructor(id, sectionId, startHour, endHour) {\n    this.id = id;\n    this.sectionId = sectionId;\n    this.startHour = startHour;\n    this.endHour = endHour;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

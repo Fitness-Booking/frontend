@@ -1,10 +1,10 @@
-import { Timestamp } from "rxjs/internal/operators/timestamp";
+import { timestamp } from 'rxjs/internal/operators/timestamp';
 
-const MILLISECONDS_IN_A_SECOND: number = 1000;
-const SECONDS_IN_A_MINUTE: number = 60;
-const MINUTES_IN_AN_HOUR: number = 60;
-const HOURS_IN_A_DAY: number = 24;
-const DAYS_IN_A_WEEK: number = 7;
+const MILLISECONDS_IN_A_SECOND = 1000;
+const SECONDS_IN_A_MINUTE = 60;
+const MINUTES_IN_AN_HOUR = 60;
+const HOURS_IN_A_DAY = 24;
+const DAYS_IN_A_WEEK = 7;
 
 const MILLISECONDS_IN_A_MINUTE = MILLISECONDS_IN_A_SECOND * SECONDS_IN_A_MINUTE;
 const MILLISECONDS_IN_AN_HOUR = MILLISECONDS_IN_A_MINUTE * MINUTES_IN_AN_HOUR;
@@ -14,73 +14,15 @@ const MILLISECONDS_IN_A_WEEK = MILLISECONDS_IN_A_DAY * DAYS_IN_A_WEEK;
 
 export class TimeSpan {
 
-	static Subtract(date1: any, date2: any) {
-		let milliSeconds: number = date1 - date2;
+  constructor(milliSeconds: number = 0) {
+    this._seconds = 0;
+    this._minutes = 0;
+    this._hours = 0;
 
-		return new TimeSpan(milliSeconds);
-
-	}
-
-	static Day(): TimeSpan {
-		return new TimeSpan(MILLISECONDS_IN_A_DAY);
-	}
-	static Hour(): TimeSpan { return new TimeSpan(MILLISECONDS_IN_AN_HOUR); }
-	static Week(): TimeSpan { return new TimeSpan(MILLISECONDS_IN_A_WEEK) };
-	static Month(): TimeSpan {
-		let now: any = new Date();
-		let aMonthAgo: any = new Date();
-		aMonthAgo.setMonth(aMonthAgo.getMonth() - 1);
-		return new TimeSpan(now - aMonthAgo);
-	}
-	static FromStringToTimeSpan(str: string): TimeSpan {
-    let dataFromStr = str.split(':');
-    return new TimeSpan((MILLISECONDS_IN_AN_HOUR * +dataFromStr[0]) + MILLISECONDS_IN_A_MINUTE * +dataFromStr[1]);
+    this.milliseconds = milliSeconds;
   }
 
-	constructor(milliSeconds: number = 0) {
-		this._seconds = 0;
-		this._minutes = 0;
-		this._hours = 0;
-
-		this.milliseconds = milliSeconds;
-	}
-	addTo(date: Date): Date {
-		console.log('add ' + this.TotalMilliSeconds, this);
-		date.setMilliseconds(date.getMilliseconds() + this.TotalMilliSeconds);
-
-		return date;
-	}
-
-	subtructFrom(date: Date): Date {
-		date.setMilliseconds(date.getMilliseconds() - this.TotalMilliSeconds);
-
-		return date;
-	}
-
-  static toStringValue(time: TimeSpan){
-    let leftValue = time.hours;
-    let rightValue = time.minutes;
-
-    let answer: string = "";
-    answer = this.appendAnswer(answer, leftValue) + ":";
-    console.log(answer)
-    answer = this.appendAnswer(answer, rightValue);
-    console.log(answer)
-    return answer;
-  }
-  static appendAnswer(str: string, value: number): string{
-    if(value < 10){
-      return str+="0" + value.toString();
-    }
-    return str+=value.toString();
-  }
-	private _milliseconds; number;
-	private _totalMilliSeconds: number;
-	private _seconds: number;
-	private _minutes: number;
-	private _hours: number;
-
-	get hours(): number {
+  get hours(): number {
 		return this._hours;
 	}
 	set hours(value: number) {
@@ -135,6 +77,63 @@ export class TimeSpan {
 
 	get TotalHours() {
 		return Math.round(this._totalMilliSeconds / MILLISECONDS_IN_AN_HOUR);
+	}
+	private _milliseconds; number;
+	private _totalMilliSeconds: number;
+	private _seconds: number;
+	private _minutes: number;
+	private _hours: number;
+
+	static Subtract(date1: any, date2: any) {
+		let milliSeconds: number = date1 - date2;
+
+		return new TimeSpan(milliSeconds);
+
+	}
+
+	static Day(): TimeSpan {
+		return new TimeSpan(MILLISECONDS_IN_A_DAY);
+	}
+	static Hour(): TimeSpan { return new TimeSpan(MILLISECONDS_IN_AN_HOUR); }
+	static Week(): TimeSpan { return new TimeSpan(MILLISECONDS_IN_A_WEEK) }	static Month(): TimeSpan {
+		let now: any = new Date();
+		let aMonthAgo: any = new Date();
+		aMonthAgo.setMonth(aMonthAgo.getMonth() - 1);
+		return new TimeSpan(now - aMonthAgo);
+	}
+	static FromStringToTimeSpan(str: string): TimeSpan {
+    let dataFromStr = str.split(':');
+    return new TimeSpan((MILLISECONDS_IN_AN_HOUR * +dataFromStr[0]) + MILLISECONDS_IN_A_MINUTE * +dataFromStr[1]);
+  }
+
+  static toStringValue(time: TimeSpan){
+    let leftValue = time.hours;
+    let rightValue = time.minutes;
+
+    let answer: string = "";
+    answer = this.appendAnswer(answer, leftValue) + ":";
+    console.log(answer)
+    answer = this.appendAnswer(answer, rightValue);
+    console.log(answer)
+    return answer;
+  }
+  static appendAnswer(str: string, value: number): string{
+    if(value < 10){
+      return str+="0" + value.toString();
+    }
+    return str+=value.toString();
+  }
+	addTo(date: Date): Date {
+		console.log('add ' + this.TotalMilliSeconds, this);
+		date.setMilliseconds(date.getMilliseconds() + this.TotalMilliSeconds);
+
+		return date;
+	}
+
+	subtructFrom(date: Date): Date {
+		date.setMilliseconds(date.getMilliseconds() - this.TotalMilliSeconds);
+
+		return date;
 	}
 
 

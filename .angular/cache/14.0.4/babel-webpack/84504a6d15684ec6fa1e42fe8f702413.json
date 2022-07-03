@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class SectionRequest {\n  constructor(name, typeId, gymId, coachId) {\n    this.name = name;\n    this.typeId = typeId;\n    this.gymId = gymId;\n    this.coachId = coachId;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

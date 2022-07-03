@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class UserRegisterModel {\n  constructor(email, username, password, repeatPassword, roleId) {\n    this.email = email;\n    this.name = username;\n    this.password = password;\n    this.repeatPassword = repeatPassword;\n    this.roleId = roleId;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class NewCoach {\n  constructor(sectionId, userId) {\n    this.sectionId = sectionId;\n    this.userId = userId;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -30,8 +30,9 @@ export class SignUpComponent implements OnInit {
   ) {
   }
   ngOnInit(): void {
-    for (let value in Roles)
-    if (typeof Roles[value] === 'number') this.roles.push(value);
+    for (const value in Roles) {
+      if (typeof Roles[value] === 'number') { this.roles.push(value); }
+    }
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', Validators.required],
@@ -44,8 +45,8 @@ export class SignUpComponent implements OnInit {
   }
   checkPasswords(passwordKey: string, passwordConfirmationKey: string) {
     return (group: FormGroup) => {
-      const passwordInput = group.controls[passwordKey],
-          passwordConfirmationInput = group.controls[passwordConfirmationKey];
+      const passwordInput = group.controls[passwordKey];
+      const passwordConfirmationInput = group.controls[passwordConfirmationKey];
       if (passwordInput.value !== passwordConfirmationInput.value) {
         return passwordConfirmationInput.setErrors({notSame: true});
       }
@@ -59,7 +60,7 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(+Roles[this.f.role.value])
+    console.log(+Roles[this.f.role.value]);
     this.submitted = true;
     if (this.registerForm.invalid ) {
       return;

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class UpdateSection {\n  constructor(id, name, typeId, gymId) {\n    this.id = id;\n    this.name = name;\n    this.typeId = typeId;\n    this.gymId = gymId;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

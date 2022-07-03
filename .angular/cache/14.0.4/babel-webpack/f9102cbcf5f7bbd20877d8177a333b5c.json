@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class NewVisitorSchedule {\n  constructor(userId, day, sectionScheduleId) {\n    this.userId = userId;\n    this.day = day;\n    this.sectionScheduleId = sectionScheduleId;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

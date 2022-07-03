@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class SectionScheduleRequest {\n  constructor(sectionId, startHour, endHour) {\n    this.sectionId = sectionId;\n    this.startHour = startHour;\n    this.endHour = endHour;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

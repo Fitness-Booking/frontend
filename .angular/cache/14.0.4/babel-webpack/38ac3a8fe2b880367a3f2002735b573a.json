@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class GymRequest {\n  constructor(location, name) {\n    this.location = location;\n    this.name = name;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}
