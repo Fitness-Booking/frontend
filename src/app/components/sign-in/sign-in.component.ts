@@ -37,8 +37,26 @@ export class SignInComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.authService.signIn(this.f.username.value, this.f.password.value);
+    this.authService.signIn(this.f.username.value, this.f.password.value)
+      .pipe(first()) // assuming you only want to take the first emitted value
+      .subscribe(
+        (result) => {
+          console.log(result);
+          if (!(result && result.access_token)) {
+            this.error = 'Failed to login. Please check your credentials.';
+            this.loading = false; // stop loading
+            return;
+          }
+          localStorage.setItem('access_token', result.access_token);
+          this.router.navigate(['/home']);
+        },
+        (error) => {
+          this.error = 'Failed to login. Please check your credentials.';
+          this.loading = false; // stop loading
+        }
+      );
   }
+
   signUp() {
     this.router.navigate(['sign-up']);
   }

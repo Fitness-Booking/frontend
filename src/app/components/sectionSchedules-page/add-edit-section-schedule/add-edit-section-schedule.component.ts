@@ -44,8 +44,8 @@ export class AddEditSectionScheduleComponent implements OnInit {
     }
     this.form = this.formBuilder.group(
       {
-        startHour: [this.isAddMode ? '' : TimeSpan.toStringValue(this.startHour), Validators.required],
-        endHour: [this.isAddMode ? '' : TimeSpan.toStringValue(this.endHour), Validators.required],
+        startHour: [this.isAddMode ? '' : TimeSpan.toStringValue(this.startHour.seconds), Validators.required],
+        endHour: [this.isAddMode ? '' : TimeSpan.toStringValue(this.endHour.seconds), Validators.required],
       },
       { validator: this.checkHours('startHour', 'endHour') }
     );

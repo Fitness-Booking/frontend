@@ -15,7 +15,7 @@ import { SectionScheduleRequest } from 'src/app/model/requests/sectionSchedule.r
 export class SectionScheduleManagerApiService {
   constructor(private http: HttpClient) {}
 
-  private url = environment.baseUrl + 'SectionSchredule/';
+  private url = environment.baseUrl + 'SectionSchedule/';
 
   public add(sectionSchedule: NewSectionSchedule): any {
     const endpointUrl = this.url;
