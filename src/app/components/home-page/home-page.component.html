@@ -1,69 +1,60 @@
-<div class="m-a-1">
-  <div *ngIf="authService.hasRestrictions(['coach'])">
-    <button class="btn btn-lg btn-dark" (click)="showCoachPage()">
-      Coach page
-    </button>
-  </div>
-  <div *ngIf="authService.hasRestrictions(['administrator'])">
-    <button class="btn btn-lg btn-dark" (click)="showAdministratorPage()">
-      Edit Coaches
-    </button>
-  </div>
-  <div *ngIf="authService.hasRestrictions(['visitor'])">
-    <button class="btn btn-lg btn-dark" (click)="showVisitorPage()">
-      Visitor`s subscribtions
-    </button>
-  </div>
-  <h2 class="text-xs-center">Gyms</h2>
-  <table class="table table-bordered table-striped p-a-1">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of gyms$">
-        <td class="text-xs-right">
-          {{ item.id }}
-        </td>
-        <td class="text-xs-right">
-          {{ item.name }}
-        </td>
-        <td class="text-xs-right">
-          {{ item.location }}
-        </td>
-        <td class="text-xs-right">
-          {{ item.description }}
-        </td>
-        <div *ngIf="authService.hasRestrictions(['administrator'])">
-          <td class="text-xs-right">
-            <button class="btn btn-lg btn-dark" (click)="deleteGym(item.id)">
-              Delete
+<div class="container my-4">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div *ngIf="authService.hasRestrictions(['coach'])">
+            <button class="btn btn-lg btn-dark" (click)="showCoachPage()">
+              Coach page
             </button>
-          </td>
-          <td class="text-xs-right">
-            <button class="btn btn-lg btn-dark" (click)="editGym(item.id, item.name, item.location, item.description)">
-              Edit
+          </div>
+          <div *ngIf="authService.hasRestrictions(['administrator'])">
+            <button class="btn btn-lg btn-dark" (click)="showAdministratorPage()">
+              Edit Coaches
             </button>
-          </td>
+          </div>
+          <div *ngIf="authService.hasRestrictions(['visitor'])">
+            <button class="btn btn-lg btn-dark" (click)="showVisitorPage()">
+              Visitor's subscriptions
+            </button>
+          </div>
+          <h2 class="text-center mt-4">Gyms</h2>
+          <table class="table table-bordered table-striped mt-3">
+            <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Location</th>
+              <th>Description</th>
+              <th *ngIf="authService.hasRestrictions(['administrator'])">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of gyms$">
+              <td>{{ item.id }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.location }}</td>
+              <td>{{ item.description }}</td>
+              <td *ngIf="authService.hasRestrictions(['administrator'])">
+                <button class="btn btn-sm btn-dark mx-1" (click)="deleteGym(item.id)">Delete</button>
+                <button class="btn btn-sm btn-dark mx-1" (click)="editGym(item.id, item.name, item.location, item.description)">Edit</button>
+              </td>
+              <td>
+                <a class="btn btn-sm btn-dark" (click)="showGym(item.id)">View</a>
+              </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <td colspan="5" class="text-right">
+                <button *ngIf="authService.hasRestrictions(['administrator'])" class="btn btn-lg btn-dark" (click)="newGym()">New Gym</button>
+                <button class="btn btn-lg btn-dark ml-2" (click)="logOut()">Log Out</button>
+              </td>
+            </tr>
+            </tfoot>
+          </table>
         </div>
-        <td class="text-xs-right">
-          <a  class="btn btn-lg btn-dark" (click) ="showGym(item.id)">
-            View
-          </a>
-        </td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <td *ngIf="authService.hasRestrictions(['administrator'])" class="text-xs-right">
-        <button class="btn btn-lg btn-dark" (click)="newGym()">New Gym</button>
-      </td>
-      <td class="text-xs-right">
-        <button class="btn btn-lg btn-dark" (click)="logOut()">LogOut</button>
-      </td>
-    </tfoot>
-  </table>
+      </div>
+    </div>
+  </div>
 </div>

@@ -14,18 +14,21 @@ const MILLISECONDS_IN_A_WEEK = MILLISECONDS_IN_A_DAY * DAYS_IN_A_WEEK;
 
 export class TimeSpan {
 
-  constructor(milliSeconds: number = 0) {
+  constructor(milliseconds: number = 0) {
+    this._milliseconds = milliseconds;
+    this._totalMilliSeconds = milliseconds;
     this._seconds = 0;
     this._minutes = 0;
     this._hours = 0;
 
-    this.milliseconds = milliSeconds;
+    this.calcMilliSeconds();
   }
 
   get hours(): number {
 		return this._hours;
 	}
 	set hours(value: number) {
+    console.log("set hours", value)
 		if (isNaN(value)) {
 			value = 0;
 		}
@@ -103,25 +106,25 @@ export class TimeSpan {
 	}
 	static FromStringToTimeSpan(str: string): TimeSpan {
     let dataFromStr = str.split(':');
+
     return new TimeSpan((MILLISECONDS_IN_AN_HOUR * +dataFromStr[0]) + MILLISECONDS_IN_A_MINUTE * +dataFromStr[1]);
   }
 
-  static toStringValue(time: TimeSpan){
+  static toStringValue(seconds: number): string {
+    let time = new TimeSpan(seconds * MILLISECONDS_IN_A_SECOND);
     let leftValue = time.hours;
     let rightValue = time.minutes;
-
     let answer: string = "";
-    answer = this.appendAnswer(answer, leftValue) + ":";
-    console.log(answer)
-    answer = this.appendAnswer(answer, rightValue);
-    console.log(answer)
+    answer = TimeSpan.appendAnswer(answer, leftValue) + ":";
+    answer = TimeSpan.appendAnswer(answer, rightValue);
     return answer;
   }
-  static appendAnswer(str: string, value: number): string{
-    if(value < 10){
-      return str+="0" + value.toString();
+
+  static appendAnswer(str: string, value: number): string {
+    if (value < 10) {
+      return str += "0" + value.toString();
     }
-    return str+=value.toString();
+    return str += value.toString();
   }
 	addTo(date: Date): Date {
 		console.log('add ' + this.TotalMilliSeconds, this);

@@ -60,14 +60,28 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(+Roles[this.f.role.value]);
     this.submitted = true;
-    if (this.registerForm.invalid ) {
+    if (this.registerForm.invalid) {
       return;
     }
     this.loading = true;
-    this.authService
-      .signUp(this.f.username.value, this.f.email.value, this.f.password.value, this.f.repeatPassword.value, +Roles[this.f.role.value]);
-
+    this.authService.signUp(this.f.email.value, this.f.username.value, this.f.password.value, this.f.repeatPassword.value, +Roles[this.f.role.value]
+    ).subscribe(
+      (result) => {
+        // Handle successful registration
+        if(!(result && result.access_token)) {
+          this.error = 'Failed to register. Please check your credentials.';
+          this.loading = false;
+          return;
+        }
+        localStorage.setItem('access_token', result.access_token);
+        this.router.navigate(['/home']);
+        this.loading = false;
+      },
+      (error) => {
+        this.error = error;
+        this.loading = false;
+      }
+    );
   }
 }

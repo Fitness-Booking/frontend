@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UserManagerApiService } from '../api/userManagerApi.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserRequest } from 'src/app/model/requests/user.request';
+import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root',
 })
@@ -17,16 +18,10 @@ export class AuthService {
     private jwtHelper: JwtHelperService
   ) {}
 
-  public signIn(email: string, password: string) {
+
+  signIn(email: string, password: string): Observable<any> {
     const user = new UserLoginModel(email, password);
-    this.userService.postLogin(user).subscribe((result) => {
-      console.log(result)
-      if (!(result && result.access_token)) {
-        return;
-      }
-      localStorage.setItem('access_token', result.access_token);
-      this.router.navigate(['/home']);
-    });
+    return this.userService.postLogin(user);
   }
 
   public signUp(
@@ -35,25 +30,20 @@ export class AuthService {
     password: string,
     repeatPassword: string,
     roleId: number
-  ) {
+  ): Observable<any> {
     const registerUser = new UserRegisterModel(
-      username,
       email,
+      username,
       password,
       repeatPassword,
       roleId
     );
-    this.userService.putRegistration(registerUser).subscribe((result) => {
-      if (!(result && result.access_token)) {
-        return;
-      }
-      localStorage.setItem('access_token', result.access_token);
-      this.router.navigate(['/home']);
-    });
+
+    return this.userService.putRegistration(registerUser);
   }
   public get(id?: number, roleId?: number, name?: string, email?:string ){
     const request = new UserRequest(id, roleId, name, email);
-
+  console.log(request);
     return this.userService.get(request);
   }
   public logOut() {
