@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://fitnessbooking.azurewebsites.net/api/'
+  baseUrl: 'http://localhost:5000/api/'
 };
 export const firebaseConfig = {
   apiKey: "AIzaSyDYAnyhDYArmWvti6AN8ivqCkotED45Qao",
